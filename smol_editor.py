@@ -21,11 +21,21 @@ class SmolEditor():
 
         self.save_button = ttk.Button(self.frame, text="Save As", command=self.save_as)
         self.save_button.grid(row=0, column=0)
+
+        self.open_button = ttk.Button(self.frame, text="Open", command=self.open_file)
+        self.open_button.grid(row=0, column=1)
+
     
     def save_as(self):
         content = self.text.get("1.0", END)
         with open("sample.txt", "w") as f:
             f.write(content)
+
+    def open_file(self): 
+        with open("sample.txt", "r") as f:
+            content = f.read()
+            self.text.insert(1.0, content)
+
 
 
 # root = Tk()
