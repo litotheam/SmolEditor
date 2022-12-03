@@ -8,8 +8,24 @@ class SmolEditor():
         self.root.title("Smol Editor")
         self.root.geometry("800x600")
 
-        self.frame = ttk.Frame(self.root)
-        self.frame.grid()
+        self.frame = ttk.Frame(
+            self.root, 
+            height=300, 
+            width=400, 
+            relief="sunken")
+        self.frame.grid(
+            padx=10, pady=10)
+
+        self.text = scrolledtext.ScrolledText(self.frame)
+        self.text.grid(row=1, column=0, padx=10, pady=10)
+
+        self.save_button = ttk.Button(self.frame, text="Save As", command=self.save_as)
+        self.save_button.grid(row=0, column=0)
+    
+    def save_as(self):
+        content = self.text.get("1.0", END)
+        with open("sample.txt", "w") as f:
+            f.write(content)
 
 
 # root = Tk()
