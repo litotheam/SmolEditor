@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import filedialog
 from tkinter import ttk
 from tkinter import scrolledtext
 
@@ -19,11 +20,16 @@ class SmolEditor():
         self.text = scrolledtext.ScrolledText(self.frame)
         self.text.grid(row=1, column=0, padx=10, pady=10)
 
-        self.save_button = ttk.Button(self.frame, text="Save As", command=self.save_as)
-        self.save_button.grid(row=0, column=0)
+        self.save_as_button = ttk.Button(self.frame, text="Save As", command=self.save_as)
+        self.save_as_button.grid(row=0, column=0)
 
         self.open_button = ttk.Button(self.frame, text="Open", command=self.open_file)
         self.open_button.grid(row=0, column=1)
+
+        self.save_button = ttk.Button(self.frame, text="save", command=self.save)
+        self.save_button.grid(row=0, column=2)
+
+        self.file = None
 
     
     def save_as(self):
@@ -31,8 +37,14 @@ class SmolEditor():
         with open("sample.txt", "w") as f:
             f.write(content)
 
+    def save(self):
+        content = self.text.get("1.0", END)
+        with open(self.file, "w") as f:
+            f.write(content)
+
     def open_file(self): 
-        with open("sample.txt", "r") as f:
+        self.file = filedialog.askopenfilename()
+        with open(self.file, "r") as f:
             content = f.read()
             self.text.insert(1.0, content)
 
