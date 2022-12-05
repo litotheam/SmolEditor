@@ -34,7 +34,8 @@ class SmolEditor():
     
     def save_as(self):
         content = self.text.get("1.0", END)
-        with open("sample.txt", "w") as f:
+        new_file = filedialog.asksaveasfilename()
+        with open(new_file, "w+") as f:
             f.write(content)
 
     def save(self):
