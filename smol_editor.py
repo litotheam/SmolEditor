@@ -18,16 +18,16 @@ class SmolEditor():
             padx=10, pady=10)
 
         self.text = scrolledtext.ScrolledText(self.frame)
-        self.text.grid(row=1, column=0, padx=10, pady=10)
+        self.text.grid(row=1, column=0, columnspan=5, padx=10, pady=10)
 
         self.save_as_button = ttk.Button(self.frame, text="Save As", command=self.save_as)
-        self.save_as_button.grid(row=0, column=0)
+        self.save_as_button.grid(row=0, column=0, sticky=W)
 
         self.open_button = ttk.Button(self.frame, text="Open", command=self.open_file)
-        self.open_button.grid(row=0, column=1)
+        self.open_button.grid(row=0, column=1, sticky=W)
 
-        self.save_button = ttk.Button(self.frame, text="save", command=self.save)
-        self.save_button.grid(row=0, column=2)
+        self.save_button = ttk.Button(self.frame, text="Save", command=self.save)
+        self.save_button.grid(row=0, column=2, sticky=W)
 
         self.file = None
 
