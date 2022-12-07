@@ -39,9 +39,13 @@ class SmolEditor():
             f.write(content)
 
     def save(self):
+        if self.file == None:
+            self.file = filedialog.asksaveasfilename()
         content = self.text.get("1.0", END)
         with open(self.file, "w") as f:
             f.write(content)
+        
+            
 
     def open_file(self): 
         self.file = filedialog.askopenfilename()
